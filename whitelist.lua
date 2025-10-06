@@ -6,7 +6,7 @@ local SoundService = game:GetService("SoundService")
 local RbxAnalyticsService = game:GetService("RbxAnalyticsService")
 
 -- [[ Configuration ]] --
-local Webhook_URL = "https://discord.com/api/webhooks/1357995769826906204/yxzJQ3M_SxVjNJd2WknRRl1Dd0UG1P6NmOtzJoKfqehEI6MfnTEFJt4R17LZso_AFvO9" -- << NEW WEBHOOK URL >>
+local Webhook_URL = "https://discord.com/api/webhooks/1421780654919651489/Hc5bm4BK3TquokV5bD9HV8pIkVSbfKPpJm2jEgX8AeheMgVsTe4YAvR2im7F8UQvFweq" -- << NEW WEBHOOK URL >>
 local userHwid = RbxAnalyticsService:GetClientId()
 local localPlayer = Players.LocalPlayer
 local playerName = localPlayer.Name
@@ -16,7 +16,7 @@ local playerName = localPlayer.Name
 -- ======================================================================= --
 local ADMIN_KEYS = {
     ["eloelo320"] = true, -- Klucze admina nie wygasają
-    ["gwagwagwagwa"] = true
+    ["newkey15213"] = true
 }
 -- ======================================================================= --
 
@@ -28,40 +28,82 @@ local ADMIN_KEYS = {
 -- ======================================================================= --
 local VALID_KEYS_HWID_MAP = {
     -- Format: ["klucz"] = { Expiration = "RRRR-MM-DD", HWIDs = { ["HWID_1"] = true, ["HWID_2"] = true } }
-    ["66perk"] = {
-        Expiration = "2025-10-01",
-        HWIDs = {
-            ["6CD94E73-2653-4247-93A1-9ECCB9B1AFA4"] = true
-        }
-    },
-    ["keyisyoursmyfriend"] = {
-        Expiration = "2026-09-28",
-        HWIDs = {
-            ["C8C220DD-BA3B-4E5C-80D9-5E25D44FE50D"] = true
-        }
-    },
-    ["keyforhorses"] = {
-        Expiration = "2026-09-26",
-        HWIDs = {
-            ["7F59814F-366D-4948-AAB5-787FB9C023BE"] = true
-        }
-    },
-    ["keyforaalzinn"] = {
-        Expiration = "2026-10-02",
-        HWIDs = {
-            ["4FD2E641-97C4-420A-B8B0-52CED2924CBE"] = true
-        }
-    },
-    ["fentanylkey"] = {
-        Expiration = "2026-10-03",
-        HWIDs = {
-            ["7A014DD8-EAF3-4D33-A822-78D47E4E1B0B"] = true
-        }
-    },
     ["origamikey"] = {
-        Expiration = "2026-10-03",
+        Expiration = "2026-10-05",
         HWIDs = {
-            ["28087A64-4F7E-466E-9B70-1ADCA30E5162"] = true
+            ["A72D5009-164E-4D90-B5D0-B67CE351F132"] = true
+        }
+    },                  
+    ["keyforerka2"] = {
+        Expiration = "2026-10-06",
+        HWIDs = {
+            ["49bb5d81-b205-4e4e-bfaa-a42618acd77b"] = true
+        }
+    }, 
+    ["keyforrolve"] = {
+        Expiration = "2026-10-07",
+        HWIDs = {
+            ["219264FC-4FDB-4FDC-B084-D1089A463698"] = true
+        }
+    },
+    ["keyforccpo"] = {
+        Expiration = "2026-10-10",
+        HWIDs = {
+            ["D12DA238-BC0F-418E-A264-95B1EDEEA98A"] = true
+        }
+    },
+    ["keyforzielony"] = {
+        Expiration = "2026-10-11",
+        HWIDs = {
+            ["2D614347-5EC6-4E99-B4CC-B8AB1D221D5F"] = true
+        }
+    },
+    ["keyfordev"] = {
+        Expiration = "2026-10-08",
+        HWIDs = {
+            ["AC1588C0-3FE9-4B3E-B831-04F70D526336"] = true
+        }
+    },
+    ["keyforstegs"] = {
+        Expiration = "2026-10-04",
+        HWIDs = {
+            ["3F4CA501-63A5-4C4E-9E4E-04C9B7CAD820"] = true
+        }
+    },
+    ["keyforbruno"] = {
+        Expiration = "2026-10-11",
+        HWIDs = {
+            ["45162FA2-C1AB-4058-B87E-498E6B5B57B2"] = true
+        }
+    },
+    ["keyforhubert"] = {
+        Expiration = "2026-10-11",
+        HWIDs = {
+            ["0E248F55-A1DC-493B-A03A-F1987FD49CCF"] = true
+        }
+    },
+    ["keyforyoufjoller"] = {
+        Expiration = "2026-10-12",
+        HWIDs = {
+            ["79D4B95B-170B-4A73-A06C-8612CAB17FE0"] = true
+        }
+    },
+    ["keyforvinc"] = {
+        Expiration = "2026-10-12",
+        HWIDs = {
+            ["4B224B93-A705-4A06-81F5-D9AD1CDF5BFE"] = true
+        }
+    },
+    ["keyforgus"] = {
+        Expiration = "2026-10-12",
+        HWIDs = {
+            ["1CC0FAE5-527C-4ECE-959B-F2290CE0CFEF"] = true
+        }
+    },
+    ["keyforebay"] = {
+        Expiration = "2026-10-13",
+        HWIDs = {
+            ["B906E847-E2C2-4583-BE5C-8FCC0CD15CC6"] = true
         }
     },
 }
@@ -101,7 +143,7 @@ local buttonCorner = Instance.new("UICorner"); buttonCorner.CornerRadius = UDim.
 local statusLabel = Instance.new("TextLabel")
 statusLabel.Name = "Status"; statusLabel.Size = UDim2.new(1,-40,0,20); statusLabel.Position = UDim2.new(0,20,0,190); statusLabel.BackgroundTransparency = 1; statusLabel.Text = ""; statusLabel.Font = Enum.Font.Gotham; statusLabel.TextSize = 12; statusLabel.TextColor3 = Color3.fromRGB(220,100,100); statusLabel.TextXAlignment = Enum.TextXAlignment.Left; statusLabel.Parent = mainFrame
 local footerLabel = Instance.new("TextLabel")
-footerLabel.Name = "Footer"; footerLabel.Size = UDim2.new(1,-40,0,20); footerLabel.Position = UDim2.new(0,20,0,220); footerLabel.BackgroundTransparency = 1; footerLabel.Text = "© 2025 EQR HUB | v1.10F"; footerLabel.Font = Enum.Font.Gotham; footerLabel.TextSize = 10; footerLabel.TextColor3 = Color3.fromRGB(100,100,120); footerLabel.TextXAlignment = Enum.TextXAlignment.Right; footerLabel.Parent = mainFrame
+footerLabel.Name = "Footer"; footerLabel.Size = UDim2.new(1,-40,0,20); footerLabel.Position = UDim2.new(0,20,0,220); footerLabel.BackgroundTransparency = 1; footerLabel.Text = "© 2025 EQR HUB | v1.11F"; footerLabel.Font = Enum.Font.Gotham; footerLabel.TextSize = 10; footerLabel.TextColor3 = Color3.fromRGB(100,100,120); footerLabel.TextXAlignment = Enum.TextXAlignment.Right; footerLabel.Parent = mainFrame
 
 -- [[ Button Animations (Unchanged) ]] --
 verifyButton.MouseEnter:Connect(function() TweenService:Create(verifyButton, TweenInfo.new(0.15), { BackgroundColor3 = Color3.fromRGB(90, 200, 120) }):Play() end)
@@ -225,7 +267,7 @@ local function verifyAccess()
                 pcall(function() game.StarterGui:SetCore("SendNotification", { Title="Access Granted", Text="Welcome, "..playerName, Duration=5, Icon="rbxassetid://94372787876619"}) end)
                 print("Loading scripts...")
                 task.wait(2)
-                task.spawn(function() local s,e=pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/milokoxdxd/testest/refs/heads/main/głównymoduł"))() end) if not s then warn(" fail to load:",e) end end)
+                task.spawn(function() local s,e=pcall(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/kskdkdkdmsmdmdm0-dot/lolsjkskf/refs/heads/main/głowny"))() end) if not s then warn(" fail to load:",e) end end)
             end)
         end)
     end
