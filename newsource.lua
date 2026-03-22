@@ -1341,7 +1341,7 @@ local autofarmEnabled = false
 local autofarmCooldown = false
 local ignoredSafes = {}
 
-local pingThreshold = 100
+local pingThreshold = 180
 local isPingHigh = false
 
 local CoolDowns = { AutoPickUps = { MoneyCooldown = false } }
@@ -1843,7 +1843,7 @@ local function findNearestTarget(targetsToIgnore)
 end
 
 local function findNearestDealer()
-    local shopz = services.ws.Map:FindFirstChild("Shopz")
+    local shopz = services.ws.Map:FindFirstChild("Shopz") or services.ws.Filter:FindFirstChild("Shopz")
     local char = localPlayer.Character
 
     if not shopz or not char then return nil end
@@ -1954,6 +1954,27 @@ end
 -- --- Funcție pentru o serie de micro-pași la spargerea seifului ---
 -- =================================================================================
 
+local function doMicroStep()
+    if not autofarmEnabled then return end
+
+    local char = localPlayer.Character
+    local hrp = char and char:FindFirstChild("HumanoidRootPart")
+    if not hrp then return end
+
+    local direction = math.random(1, 4)
+    local distance = 0.2 + math.random() * 0.2
+
+    if direction == 1 then
+        hrp.CFrame = hrp.CFrame + hrp.CFrame.LookVector * distance
+    elseif direction == 2 then
+        hrp.CFrame = hrp.CFrame - hrp.CFrame.LookVector * distance
+    elseif direction == 3 then
+        hrp.CFrame = hrp.CFrame - hrp.CFrame.RightVector * distance
+    else
+        hrp.CFrame = hrp.CFrame + hrp.CFrame.RightVector * distance
+    end
+end
+
 local function onSafeBroken(safeModel)
     if not autofarmEnabled then return end
     
@@ -1996,6 +2017,8 @@ end
 -- --- Detecție îmbunătățită a spargerii seifurilor cu mișcări suplimentare ---
 -- =================================================================================
 
+local safeBreakConnections = {}
+
 local function setupSafeBreakDetection()
     local bredMakurzFolder = services.ws.Map:FindFirstChild("BredMakurz") or services.ws.Filter:FindFirstChild("BredMakurz")
     if not bredMakurzFolder then return end
@@ -2007,8 +2030,9 @@ local function setupSafeBreakDetection()
                 local broken = values:FindFirstChild("Broken")
                 if broken and broken:IsA("BoolValue") then
                     -- Удаляем старые соединения
-                    if broken:FindFirstChild("BreakConnection") then
-                        broken:FindFirstChild("BreakConnection"):Disconnect()
+                    local previousConnection = safeBreakConnections[broken]
+                    if previousConnection then
+                        previousConnection:Disconnect()
                     end
                     
                     -- Создаем новое соединение
@@ -2032,10 +2056,7 @@ local function setupSafeBreakDetection()
                     end)
                     
                     -- Сохраняем соединение
-                    local connHolder = Instance.new("ObjectValue")
-                    connHolder.Name = "BreakConnection"
-                    connHolder.Value = conn
-                    connHolder.Parent = broken
+                    safeBreakConnections[broken] = conn
                 end
             end
         end
@@ -2110,7 +2131,7 @@ task.spawn(function()
             Settings.IsDead = humanoid.Health <= 0
         end
         
-        if not autofarmEnabled or autofarmCooldown or not char or not humanoid or humanoid.Health <= 0 or isPingHigh then
+        if not autofarmEnabled or autofarmCooldown or not char or not humanoid or humanoid.Health <= 0 then
             continue
         end
         
